@@ -16,7 +16,7 @@ let arrayConsultas = [];
 class Consultorio {
     constructor(id, fecha, nombre, apellido, sede, especialidades, horario) {
         this.id = id;
-        this.fecha = fecha;
+        this.fecha = luxon.DateTime.fromISO(fecha).toFormat('dd-LL-yyyy');
         this.nombre = nombre;
         this.apellido = apellido;
         this.sede = sede;
