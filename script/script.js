@@ -1,9 +1,10 @@
 const STORAGE ='consultas';
-let arrayConsultas = [];
+let arrayConsultas = JSON.parse(localStorage.getItem('key')) || [];
 
 
 
 //Math.ceil(Math.random() * 1000); //id aleatorio
+//${new Date(`${el.fecha}T00:00:00`).toLocaleDateString('es-ES')}
 //luxon.DateTime.fromISO(fecha).toFormat('dd-LL-yyyy');
 //new Date(`${fecha}T00:00:00`).toLocaleDateString('es-ES')
 //new Date(fecha).toLocaleDateString('es-ES')
@@ -16,7 +17,7 @@ let arrayConsultas = [];
 class Consultorio {
     constructor(id, fecha, nombre, apellido, sede, especialidades, horario) {
         this.id = id;
-        this.fecha = luxon.DateTime.fromISO(fecha).toFormat('dd-LL-yyyy');
+        this.fecha = fecha;
         this.nombre = nombre;
         this.apellido = apellido;
         this.sede = sede;
@@ -24,30 +25,7 @@ class Consultorio {
         this.horario = horario;
         this.precio = especialidades === 'Clinica Medica' ? 3000 * 1.21 : 5000 * 1.21;
     };
-        //metodo
-    mostrar (contenedor) {
         
-        let acumulador = '';
-    
-        acumulador += `
-        <tr>
-        <td>${this.fecha}</td>
-        <td>${this.nombre.toUpperCase()} </td>
-        <td>${this.apellido.toUpperCase()}</td>
-        <td>${this.sede}</td>
-        <td>${this.especialidades}</td>
-        <td>${this.horario}</td>
-        <td>$${this.precio.toLocaleString('de-DE', {style: 'currency', currency: 'ARS'})}</td>
-        <td>
-           <button onclick="eliminarProducto(${this.id})" type="button" class="btn btn-light">❌</button>  
-        </td>
-        
-       </tr>
-       `
-       contenedor.innerHTML += acumulador; 
-            
-    }
-   
 };
 
 const newId = () => {
@@ -60,19 +38,6 @@ const newId = () => {
 
 
 
-/* const formateo = () => {
-    let fecha = "";  
-    let fechaActual = new Date (fecha);
-    let diaActual = parseInt(diaActual.getDate())
-    let mesActual = parseInt(fechaActual.getMonth()) +1;
-    let anioActual = parseInt(fechaActual.getFullYear())
-  let formato =`${diaActual}/${mesActual}/${anioActual}`
-  return formato;
-} */
-
-
-
-
 // tabla de union dom a js
 const form = document.getElementById('form');
 const contenedorArchivo = document.getElementById('archivo');
@@ -82,18 +47,29 @@ const formError = document.getElementById('form-error');
 const botonPagar = document.getElementById('pagar');
 const contenedorModal = document.getElementById('modal');
 
-  // mostrar las reservas
-
-  const mostrarConsultas = () => {
-    contenedorArchivo.innerHTML = ''
-    
-    arrayConsultas.forEach( (el)=> {
-          el.mostrar(
+  
+// mostrar las reservas
+      const mostrarConsultas = () => {
+        let acumulador = '';
+        arrayConsultas.forEach( el => {
+            acumulador += `
+            <tr>
+        <td>${luxon.DateTime.fromISO(el.fecha).toFormat('dd-LL-yyyy')}</td>
+        <td>${el.nombre.toUpperCase()} </td>
+        <td>${el.apellido.toUpperCase()}</td>
+        <td>${el.sede}</td>
+        <td>${el.especialidades}</td>
+        <td>${el.horario}</td>
+        <td>$${el.precio.toLocaleString('de-DE', {style: 'currency', currency: 'ARS'})}</td>
+        <td>
+           <button onclick="eliminarProducto(${el.id})" type="button" class="btn btn-light">❌</button>  
+        </td>
         
-            contenedorArchivo
-          )}
-      );
-      console.log(arrayConsultas)}
+       </tr>
+            `
+        })
+        contenedorArchivo.innerHTML = acumulador;
+      }
 
 
    // eliminar productos
