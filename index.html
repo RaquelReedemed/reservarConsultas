@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./CSS/styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!--NAV-->
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand">Sanatorio La Fe</a>
+            <button>🩺</button>
+        </div>
+    </nav>
+
+
+
+    <div class="container d-flex w-50 align-items-center flex-column">
+        <h1>Reservar Consulta Medica</h1>
+
+        <form id="form">
+            
+            <!--ingresar fecha-->
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Elija fecha</span>
+                <input type="date" name="fecha" min="2023-01-01" max="2023-03-01"  class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+
+
+
+            <!--ingresar nombre-->
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Ingrese su nombre</span>
+                <input type="text" name="nombre" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+
+            <!--ingresar apellido-->
+            <div class="input-group mb-3">
+                <span class="input-group-text" id="inputGroup-sizing-default">Ingrese su apellido</span>
+                <input type="text" name="apellido" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+
+
+
+            <!--elegir sede-->
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Elija Sede</label>
+                <select name="sede" class="form-select" id="inputGroupSelect01">
+                    <option value="">Seleccione</option>
+                    <option value="Sede Central">Sede Central</option>
+                    <option value="Sede Provincia">Sede Provincia</option>
+                </select>
+            </div>
+
+
+            <!--elegir Especialidad-->
+
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Elija Especialidad</label>
+                <select name="especialidades" class="form-select" id="inputGroupSelect01">
+                    <option value="">Seleccione</option>
+                    <option value="Clinica Medica">Clinica Medica</option>
+                    <option value="Dermatologia">Dermatologia</option>
+                </select>
+            </div>
+
+
+            <!--elegir Horarios-->
+
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="inputGroupSelect01">Elija hora</label>
+                <select name="horario" class="form-select" id="inputGroupSelect01">
+                    <option value="">Seleccione</option>
+                    <option value="9:00">9:00</option>
+                    <option value="15:00">15:00</option>
+                </select>
+            </div>
+
+            <!--mensaje error-->
+
+            <span id="form-error" style="display: none; color: red;" class="text-center p-4"  >Debe llenar todos los campos</span>
+            <div class="d-flex justify-content-center">
+                <input type="submit" value="enviar">
+            </div>
+        </form>
+
+    </div>
+    <div class="turnos">
+
+        <div class="card-body">
+            <div class="card-header mb-3 mt-3 fs-4 text-center">
+                <span> <b>Turnos generados</b> </span>
+            </div>
+            <table class="text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Sede</th>
+                        <th scope="col">Especialidad</th>
+                        <th scope="col">Hora</th>
+                        <th scope="col">Precio + IVA</th>
+                    </tr>
+                </thead>
+                <tbody id="archivo">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+       <!-- Button trigger modal, toggle para abrir el modal-->
+<button id="pagar" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Click para Pagar
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Monto a Pagar</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div id="modal" class="modal-body">
+
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Pagar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+    <!--
+
+<button id="pagar">Pagar</button>>
+
+-->
+
+    
+   
+
+    <!--link bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+
+    <!--luxon-->    
+    <script src="./script/luxon.min.js" ></script>
+
+    <!--link sweetalert-->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>    
+
+    <!--link js-->
+    <script src="./script/script.js"></script>
+
+</body>
+
+</html>
+

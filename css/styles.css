@@ -1,0 +1,22 @@
+*{
+    margin: 0;
+    padding: 0;
+  /*  outline: 1px solid green; */
+  }
+
+.turnos {
+   
+    margin-left: 10rem;
+    margin-right: 10rem;
+    
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.clase {
+    background-color: #f0f0f0;
+    font-size: 17px;
+}
