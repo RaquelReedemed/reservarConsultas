@@ -1,5 +1,5 @@
 const STORAGE ='consultas';
-let arrayConsultas = JSON.parse(localStorage.getItem('key')) || [];
+let arrayConsultas = [];
 
 
 
@@ -46,6 +46,26 @@ const recuperarConsulta = localStorage.getItem(STORAGE);
 const formError = document.getElementById('form-error');
 const botonPagar = document.getElementById('pagar');
 const contenedorModal = document.getElementById('modal');
+const precioDolarText = document.getElementById('precio-dolar')
+
+//API precio dolar (navbar)
+
+//funcion para ahorrarse colocar el .jason() a las dunc asincronas
+const JSONResponse = async (data) => { //data es una promesa
+    const response = await data;     //espera hasta q se resuelva la promesa
+    return await response.json();     //se convierte la promesa en tipo json
+}
+
+const precioDolar = fetch('https://www.dolarsi.com/api/api.php?type=valoresprincipales');
+const traerDolar = async () => {
+    const respuesta = await JSONResponse(precioDolar);
+    console.log(respuesta);
+    const oficial = respuesta.find(dolar => dolar.casa.agencia === '349');
+    precioDolarText.innerHTML = `Dolar Oficial : Compra $ ${oficial?.casa.compra}`
+}
+traerDolar();
+
+
 
   
 // mostrar las reservas

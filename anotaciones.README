@@ -1,0 +1,8 @@
+EL programa se divide en dos:
+
+1)El ingreso de los datos y la creacion del turno.
+2)La impresion del turno en pantalla
+
+Paso1, Se ingresan los datos a tarves de un form,se crea el objeto y pushea al array, luego se guarda en el localStorage el array.
+
+Paso2, Se lee la info del array que contienen la informacion de los turnos creado e impimi en pantalla esa informacion
