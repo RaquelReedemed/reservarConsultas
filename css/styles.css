@@ -17,6 +17,18 @@
 }
 
 .clase {
-    background-color: #f0f0f0;
+    background-color: #d6d6d6;
     font-size: 17px;
+    
 }
+
+i{
+    cursor: pointer;
+}
+
+.btnPagar {
+    display: flex;
+    justify-content: space-around;
+}
+
+/* #f0f0f0*/

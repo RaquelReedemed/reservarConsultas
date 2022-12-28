@@ -1,0 +1,24 @@
+{
+  "name": "4ta-preentrega",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RaquelReedemed/reservarConsultas.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RaquelReedemed/reservarConsultas/issues"
+  },
+  "homepage": "https://github.com/RaquelReedemed/reservarConsultas#readme",
+  "dependencies": {
+    "bootstrap-icons": "^1.10.3",
+    "express": "^4.18.2",
+    "mercadopago": "^1.5.14"
+  }
+}

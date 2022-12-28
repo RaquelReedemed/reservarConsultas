@@ -2,18 +2,6 @@ const STORAGE ='consultas';
 let arrayConsultas = [];
 
 
-
-//Math.ceil(Math.random() * 1000); //id aleatorio
-//${new Date(`${el.fecha}T00:00:00`).toLocaleDateString('es-ES')}
-//luxon.DateTime.fromISO(fecha).toFormat('dd-LL-yyyy');
-//new Date(`${fecha}T00:00:00`).toLocaleDateString('es-ES')
-//new Date(fecha).toLocaleDateString('es-ES')
-//new Date(fecha).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric'}).replace(/ /g, '-');
-/* <td>
-
-//<td>${new Date(this.fecha).toLocaleDateString()}</td>
-           <button onclick="window.print()" type="button" class="btn btn-light">imprimir</button>  
-        </td> */
 class Consultorio {
     constructor(id, fecha, nombre, apellido, sede, especialidades, horario) {
         this.id = id;
@@ -46,7 +34,22 @@ const recuperarConsulta = localStorage.getItem(STORAGE);
 const formError = document.getElementById('form-error');
 const botonPagar = document.getElementById('pagar');
 const contenedorModal = document.getElementById('modal');
-const precioDolarText = document.getElementById('precio-dolar')
+const precioDolarText = document.getElementById('precio-dolar');
+const toggle = document.getElementById('toggleDark');
+
+//modo oscuro
+const body = document.querySelector('body');
+toggle.addEventListener('click', function() {
+    this.classList.toggle('bi-moon');
+    if(this.classList.toggle('bi-brightness-high-fill')) {
+        body.style.background = 'white';
+        body.style.transition = '2s';
+    }else{
+        body.style.background ='#d6d6d6';
+        body.style.transition = '2s';
+    }
+})
+
 
 //API precio dolar (navbar)
 
@@ -185,6 +188,17 @@ console.log(arrayConsultas);
         Estimado paciente
         el monto a abonar es de: ${res}$
         `;
+
+        // Crea un objeto de preferencia
+let preference = {
+    items: [
+      {
+        title: "Mi producto",
+        unit_price: 100,
+        quantity: 1,
+      },
+    ],
+  };
      }))
      
     console.log(contenedorModal.innerHTML);  
